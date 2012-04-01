@@ -1,11 +1,12 @@
-This script depends on SourceLib. You can get it here https://github.com/frostschutz/SourceLib
-This script sends rcon status (or rcon sm version if you enable TEST_SOURCEMOD) to your server
-If your server does not respond, it simply executes commands to stop, and restart your server
+This script depends on SourceLib get it at https://github.com/frostschutz/SourceLib
+This script sends rcon status (or rcon sm version if you enable TEST_SOURCEMOD) to
+your server If your server does not respond, it simply executes commands to stop
+and start your server.
 
 to use:
-1) Make sure you have SourceLib (You can just put it in the same directory as this script)
-2) Edit the first few lines of the file with your servers information, and commands to stop
-and start your server.
+1) Get SourceLib (You can just put it in the same directory as this script)
+2) Edit the first few lines of the file with your servers information, and commands
+to stop and start your server.
 3) Put this script in your crontab
 
 Variables:
@@ -14,6 +15,7 @@ USE_TWISTEDCAT
 USE_SOURCEMOD
  - Let you know if sourcemod isn't working, only useful if you have USE_TWISTEDCAT
 RETRIES
- - Number of times to try rcon for each server before giving and considering server frozen
+ - Number of times to try rcon for each server before giving and considering server
+frozen
 TIME_BETWEEN_RETRIES
  - Self explanitory.
