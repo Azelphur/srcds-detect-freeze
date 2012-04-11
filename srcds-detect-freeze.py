@@ -26,6 +26,7 @@ RETRIES = 3
 TIME_BETWEEN_RETRIES = 5
 USE_TWISTEDCAT = True
 TEST_SOURCEMOD = True
+DEBUG_MODE = False
 
 def stop(server):
 	os.system(servers[server]['stop'])
@@ -37,13 +38,15 @@ for server in servers:
 	for retry in range(1, RETRIES+1):
 		try:
 			rcon = SourceRcon.SourceRcon(servers[server]['address'], servers[server]['port'], servers[server]['pass'])
+			reply = rcon.rcon("sm version")
 			if TEST_SOURCEMOD and USE_TWISTEDCAT and 'SourceMod Version Information' not in reply:
-				reply = rcon.rcon("sm version")
 				os.system('echo "%s server failed SourceMod Unit test" | twistedcat' % (server))
 			else:
 				reply = rcon.rcon("status")
 			break
-		except:
+		except Exception, e:
+			if DEBUG_MODE:
+				raise e
 			if retry == RETRIES:
 				if USE_TWISTEDCAT:
 					os.system('echo "%s server has stopped responding, restarting it." | twistedcat' % (server))
